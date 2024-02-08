@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+public enum NetworkError: Error {
 	case decode
 	case invalidURL
 	case badRequest(_ message: String)
@@ -18,7 +18,7 @@ enum NetworkError: Error {
 }
 
 extension NetworkError: CustomStringConvertible {
-	var description: String {
+	public var description: String {
 		switch self {
 		case .decode: return "Decode error"
 		case .invalidURL: return "Invalid URL error"
