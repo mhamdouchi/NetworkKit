@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 
-final class NetworkService: Networkable {
-	func sendRequest<T: Decodable>(endpoint: EndPoint, resultHandler: @escaping (Result<T, NetworkError>) -> Void) {
+public final class NetworkService: Networkable {
+	public func sendRequest<T: Decodable>(endpoint: EndPoint, resultHandler: @escaping (Result<T, NetworkError>) -> Void) {
 		
 		guard let urlRequest = createRequest(endPoint: endpoint) else {
 			return
@@ -37,7 +37,7 @@ final class NetworkService: Networkable {
 	}
 	
 	
-	func sendRequest<T>(endpoint: EndPoint, type: T.Type) -> AnyPublisher<T, NetworkError> where T : Decodable {
+	public func sendRequest<T>(endpoint: EndPoint, type: T.Type) -> AnyPublisher<T, NetworkError> where T : Decodable {
 		guard let urlRequest = createRequest(endPoint: endpoint) else {
 			precondition(false, "Failed URLRequest")
 		}
@@ -62,7 +62,7 @@ final class NetworkService: Networkable {
 			.eraseToAnyPublisher()
 	}
 	
-	func sendRequest<T: Decodable>(endpoint: EndPoint) async throws -> T {
+	public func sendRequest<T: Decodable>(endpoint: EndPoint) async throws -> T {
 		guard let urlRequest = createRequest(endPoint: endpoint) else {
 			throw NetworkError.decode
 		}
